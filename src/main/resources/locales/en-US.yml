@@ -1,0 +1,19 @@
+sbt:
+  island:
+    description: "[admin] sandlot-bentobox-tools island recovery commands"
+    parameters: "<subcommand>"
+    undelete:
+      description: "[admin] clear deletable/deleted flags on a tombstoned island"
+      parameters: "<uuid|player> [--keep-lock]"
+    repair:
+      description: "[admin] heuristic recovery: undelete + LOCK restore + purge-protected clear"
+      parameters: "<uuid|player> [--keep-lock] [--keep-purge-protected]"
+    scan:
+      description: "[admin] enumerate islands in inconsistent states"
+      parameters: "[--world <name>] [--page <n>]"
+    raw:
+      description: "[admin] dump full Island JSON to server log"
+      parameters: "<uuid|player>"
+    regen:
+      description: "[admin] re-paste blueprint over existing island"
+      parameters: "<uuid|player> [--world overworld|nether|end] [--bundle <name>] [--force]"
