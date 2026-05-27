@@ -3,6 +3,7 @@ package com.sandlotminecraft.sbt;
 import java.util.Optional;
 
 import com.sandlotminecraft.sbt.commands.IslandGroupCommand;
+import com.sandlotminecraft.sbt.util.AuditLog;
 
 import world.bentobox.bentobox.api.addons.Addon;
 import world.bentobox.bentobox.api.addons.GameModeAddon;
@@ -32,6 +33,7 @@ public class SandlotBentoBoxTools extends Addon {
             return;
         }
         bsbAdminCommand = adminCmd.get();
+        AuditLog.init(this);
         registerIslandGroupCommand();
         log("[sbt] op=load result=ok");
     }
