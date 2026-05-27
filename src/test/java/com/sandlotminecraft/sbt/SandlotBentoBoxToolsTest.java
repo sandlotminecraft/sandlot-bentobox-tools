@@ -87,6 +87,11 @@ class SandlotBentoBoxToolsTest {
         CompositeCommand admin = mock(CompositeCommand.class);
         when(addonsManager.getAddonByName("BSkyBlock")).thenReturn(Optional.of(bsb));
         when(bsb.getAdminCommand()).thenReturn(Optional.of(admin));
+        // T-03 introduced a real IslandGroupCommand registration on the happy path. The
+        // CompositeCommand constructor pulls in BentoBox.getInstance() and a chain of
+        // plugin-bootstrap state; stub the extracted method here so this unit test stays
+        // about the [sbt] op=load lines and the State transition.
+        doNothing().when(addon).registerIslandGroupCommand();
 
         addon.onEnable();
 

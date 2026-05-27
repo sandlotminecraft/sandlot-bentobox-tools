@@ -2,6 +2,8 @@ package com.sandlotminecraft.sbt;
 
 import java.util.Optional;
 
+import com.sandlotminecraft.sbt.commands.IslandGroupCommand;
+
 import world.bentobox.bentobox.api.addons.Addon;
 import world.bentobox.bentobox.api.addons.GameModeAddon;
 import world.bentobox.bentobox.api.commands.CompositeCommand;
@@ -10,6 +12,7 @@ public class SandlotBentoBoxTools extends Addon {
 
     private GameModeAddon bsbAddon;
     private CompositeCommand bsbAdminCommand;
+    private IslandGroupCommand islandGroupCommand;
 
     @Override
     public void onEnable() {
@@ -29,8 +32,12 @@ public class SandlotBentoBoxTools extends Addon {
             return;
         }
         bsbAdminCommand = adminCmd.get();
-        // T-03: new IslandGroupCommand(this, bsbAdminCommand) self-registers here.
+        registerIslandGroupCommand();
         log("[sbt] op=load result=ok");
+    }
+
+    protected void registerIslandGroupCommand() {
+        islandGroupCommand = new IslandGroupCommand(this, bsbAdminCommand);
     }
 
     @Override
@@ -44,5 +51,9 @@ public class SandlotBentoBoxTools extends Addon {
 
     public CompositeCommand getBsbAdminCommand() {
         return bsbAdminCommand;
+    }
+
+    public IslandGroupCommand getIslandGroupCommand() {
+        return islandGroupCommand;
     }
 }
