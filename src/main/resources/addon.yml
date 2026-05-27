@@ -1,0 +1,9 @@
+name: sandlot-bentobox-tools
+main: com.sandlotminecraft.sbt.SandlotBentoBoxTools
+version: 0.1.0
+api-version: 3.16.0
+authors:
+  - waseric
+softdepend:
+  - BSkyBlock
+description: "BentoBox addon: admin island-state recovery and blueprint regen for BSkyBlock"
