@@ -14,6 +14,19 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
+  <repositories>
+    <!-- BentoBox releases (3.x line published here, not Maven Central). -->
+    <repository>
+      <id>bentoboxworld</id>
+      <url>https://repo.codemc.org/repository/bentoboxworld/</url>
+    </repository>
+    <!-- Paper API (transitive dep of BentoBox). -->
+    <repository>
+      <id>papermc</id>
+      <url>https://repo.papermc.io/repository/maven-public/</url>
+    </repository>
+  </repositories>
+
   <dependencies>
     <!-- BentoBox dependency: provided scope (runtime host supplies it) -->
     <dependency>
