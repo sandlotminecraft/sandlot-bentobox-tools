@@ -15,6 +15,8 @@ import org.bukkit.Server;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.sandlotminecraft.sbt.util.AuditLog;
+
 import world.bentobox.bentobox.api.addons.Addon;
 import world.bentobox.bentobox.api.commands.CompositeCommand;
 
@@ -53,6 +55,9 @@ class IslandGroupCommandTest {
         addon = mock(Addon.class);
         doAnswer(inv -> null).when(addon).log(anyString());
         parent = mock(CompositeCommand.class);
+        // chooseLabel now emits via AuditLog; init it to the same mock addon so the existing
+        // verify(addon).log(...) assertions still fire through the static AuditLog.logger.
+        AuditLog.init(addon);
     }
 
     @Test

@@ -17,10 +17,11 @@ public class SandlotBentoBoxTools extends Addon {
 
     @Override
     public void onEnable() {
+        AuditLog.init(this);
         Optional<Addon> opt = getPlugin().getAddonsManager().getAddonByName("BSkyBlock");
         if (opt.isEmpty() || !(opt.get() instanceof GameModeAddon gma)) {
             logError("BSkyBlock GameModeAddon not present; sandlot-bentobox-tools is inert.");
-            log("[sbt] op=load result=fail reason=bskyblock-absent");
+            AuditLog.result("load", null, "fail", "reason", "bskyblock-absent");
             setState(State.DISABLED);
             return;
         }
@@ -28,14 +29,13 @@ public class SandlotBentoBoxTools extends Addon {
         Optional<CompositeCommand> adminCmd = gma.getAdminCommand();
         if (adminCmd.isEmpty()) {
             logError("BSkyBlock admin command not registered; sandlot-bentobox-tools is inert.");
-            log("[sbt] op=load result=fail reason=admin-command-absent");
+            AuditLog.result("load", null, "fail", "reason", "admin-command-absent");
             setState(State.DISABLED);
             return;
         }
         bsbAdminCommand = adminCmd.get();
-        AuditLog.init(this);
         registerIslandGroupCommand();
-        log("[sbt] op=load result=ok");
+        AuditLog.result("load", null, "ok");
     }
 
     protected void registerIslandGroupCommand() {

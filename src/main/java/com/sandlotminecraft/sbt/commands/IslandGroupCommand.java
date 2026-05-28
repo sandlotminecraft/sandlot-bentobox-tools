@@ -2,6 +2,8 @@ package com.sandlotminecraft.sbt.commands;
 
 import java.util.List;
 
+import com.sandlotminecraft.sbt.util.AuditLog;
+
 import world.bentobox.bentobox.api.addons.Addon;
 import world.bentobox.bentobox.api.commands.CompositeCommand;
 import world.bentobox.bentobox.api.user.User;
@@ -31,7 +33,7 @@ public class IslandGroupCommand extends CompositeCommand {
      */
     static String chooseLabel(Addon addon, CompositeCommand parent) {
         if (parent.getSubCommand("island").isPresent()) {
-            addon.log("[sbt] op=load result=ok label=sbt reason=island-label-claimed");
+            AuditLog.result("load", null, "ok", "label", "sbt", "reason", "island-label-claimed");
             return "sbt";
         }
         return "island";
